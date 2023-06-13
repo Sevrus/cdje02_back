@@ -2,14 +2,27 @@ const {Sequelize, DataTypes} = require('sequelize');
 const UserModel = require('../models/user');
 const bcrypt = require('bcrypt');
 
-const sequelize = new Sequelize('cdj02_db', 'root', '', {
-    host: 'localhost',
-    dialect: 'mariadb',
-    dialectOptions: {
-        timezone: 'Etc/GMT-2',
-    },
-    logging: false
-});
+let sequelize;
+
+if(process.env.NODE_ENV === 'production') {
+    sequelize = new Sequelize('cdj02_db', '', '', {
+        host: 'localhost',
+        dialect: 'mariadb',
+        dialectOptions: {
+            timezone: 'Etc/GMT+2',
+        },
+        logging: true
+    });
+} else {
+    sequelize = new Sequelize('cdj02_db', 'root', '', {
+        host: 'localhost',
+        dialect: 'mariadb',
+        dialectOptions: {
+            timezone: 'Etc/GMT+2',
+        },
+        logging: false
+    });
+}
 
 const User = UserModel(sequelize, DataTypes);
 
