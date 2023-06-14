@@ -9,7 +9,7 @@ module.exports = (app) => {
                     const message = 'Le règlement demandé n\'existe pas. Réessayez avec un autre identifiant';
                     return res.status(404).json({ message });
                 }
-                const message = 'Un règlement a bien été trouvé';
+                const message = `Le règlement ${regulation.title} a bien été trouvé`;
                 res.json({message, data: regulation});
             })
             .catch(error => {

@@ -1,10 +1,10 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const UserModel = require('../models/user');
-// const ComityModel = require('../models/comity.js');
+const ComityModel = require('../models/comity.js');
 const tournamentModel = require('../models/tournamentModel.js');
 const aisneChampionModel = require('../models/aisneChampionModel.js');
 const ClubModel = require('../models/club');
-// const comities = require('./data/dataComity');
+const comities = require('./data/dataComity');
 const tournaments = require('./data/dataTournaments');
 const aisneChampions = require('./data/dataAisneChampions');
 const clubs = require('./data/dataClubs');
@@ -25,7 +25,7 @@ const sequelize = new Sequelize('cdje02_db', 'root', '', {
 
 
 const User = UserModel(sequelize, DataTypes);
-// const Comity = ComityModel(sequelize, DataTypes);
+const Comity = ComityModel(sequelize, DataTypes);
 const Tournament = tournamentModel(sequelize, DataTypes);
 const Club = ClubModel(sequelize, DataTypes);
 const Regulation = RegulationModel(sequelize, DataTypes);
@@ -34,16 +34,16 @@ const News = NewsModel(sequelize, DataTypes);
 
 const initDb = () => {
     return sequelize.sync({ force: true }).then(_ => {
-        // comities.map(comity => {
-        //     Comity.create({
-        //         title: comity.title,
-        //         image: comity.image,
-        //         alt: comity.alt,
-        //         firstName: comity.firstName,
-        //         lastName: comity.lastName,
-        //         mail: comity.mail
-        //     }).then(comity => console.log(comity.toJSON()));
-        // });
+        comities.map(comity => {
+            Comity.create({
+                title: comity.title,
+                image: comity.image,
+                alt: comity.alt,
+                firstName: comity.firstName,
+                lastName: comity.lastName,
+                mail: comity.mail
+            }).then(comity => console.log(comity.toJSON()));
+        });
 
         news.map(n => {
             News.create({
@@ -64,7 +64,7 @@ const initDb = () => {
             Regulation.create({
                 title: regulation.title,
                 link: regulation.link
-            }).then(champion => console.log(champion.toJSON()));
+            }).then(regulation => console.log(regulation.toJSON()));
         });
 
         aisneChampions.map(aisneChampion => {
@@ -97,5 +97,5 @@ const initDb = () => {
 };
 
 module.exports = {
-    initDb, User, Tournament, Club, Regulation, AisneChampion, News
+    initDb, User, Comity, Tournament, Club, Regulation, AisneChampion, News
 };

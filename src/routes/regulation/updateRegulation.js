@@ -14,7 +14,7 @@ module.exports = (app) => {
                         const message = 'Le règlement demandé n\'existe pas. Réessayez avec un autre identifiant';
                         return res.status(404).json({ message });
                     }
-                    const message = `Le règlement ${regulation.name} a bien été modifié`;
+                    const message = `Le règlement ${regulation.title} a bien été modifié`;
                     res.json({message, data: regulation});
                 })
             })

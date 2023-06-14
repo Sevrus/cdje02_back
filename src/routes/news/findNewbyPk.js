@@ -9,7 +9,7 @@ module.exports = (app) => {
                     const message = `L'article demandé n'existe pas. Réessayez avec un autre identifiant`;
                     return res.status(404).json({ message });
                 }
-                const message = `L'article ${req.params.title} a bien été trouvé`;
+                const message = `L'article' ${news.title} a bien été trouvé`;
                 res.json({ message, data: news });
             })
             .catch(error => {

@@ -14,7 +14,7 @@ module.exports = (app) => {
                         const message = 'Le tournoi demandé n\'existe pas. Réessayez avec un autre identifiant';
                         return res.status(404).json({ message });
                     }
-                    const message = `Le tournoi ${tournament.name} a bien été modifié`;
+                    const message = `Le tournoi ${tournament.title} a bien été modifié`;
                     res.json({message, data: tournament});
                 })
             })

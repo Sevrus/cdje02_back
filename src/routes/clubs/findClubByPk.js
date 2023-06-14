@@ -9,7 +9,7 @@ module.exports = (app) => {
                     const message = 'Le club demandé n\'existe pas. Réessayez avec un autre identifiant';
                     return res.status(404).json({ message });
                 }
-                const message = 'Un club a bien été trouvé';
+                const message = `Le club ${club.name} a bien été trouvé`;
                 res.json({ message, data: club });
             })
             .catch(error => {
