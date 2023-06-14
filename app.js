@@ -19,6 +19,12 @@ require('./src/routes/tournament/findTournamentByPk')(app);
 require('./src/routes/tournament/findAllTournament')(app);
 require('./src/routes/tournament/updateTournament')(app);
 require('./src/routes/tournament/deleteTournament')(app);
+require('./src/routes/comity/createComity')(app);
+require('./src/routes/comity/findComityByPk')(app);
+require('./src/routes/comity/findAllComity')(app);
+require('./src/routes/comity/updateComity')(app);
+require('./src/routes/comity/deleteComity')(app);
+
 
 //Gestion des erreurs 404
 app.use(({res}) => {
