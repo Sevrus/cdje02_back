@@ -1,8 +1,8 @@
 const {Sequelize, DataTypes} = require('sequelize');
 const UserModel = require('../models/user');
 const ComityModel = require('../models/comity.js');
-const tournamentModel = require('../models/tournament.js');
-const aisneChampionModel = require('../models/aisneChampion.js');
+const tournamentModel = require('../models/tournamentModel.js');
+const aisneChampionModel = require('../models/aisneChampionModel.js');
 const ClubModel = require('../models/club');
 const comities = require('./data/dataComity');
 const tournaments = require('./data/dataTournaments');
