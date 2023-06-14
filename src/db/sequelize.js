@@ -1,11 +1,13 @@
 const {Sequelize, DataTypes} = require('sequelize');
 const UserModel = require('../models/user');
+const ComityModel = require('../models/comity');
+const comities = require('./data/dataComity');
 const bcrypt = require('bcrypt');
 
 let sequelize;
 
 if(process.env.NODE_ENV === 'production') {
-    sequelize = new Sequelize('cdj02_db', '', '', {
+    sequelize = new Sequelize('cdje02_db', '', '', {
         host: 'localhost',
         dialect: 'mariadb',
         dialectOptions: {
@@ -14,7 +16,7 @@ if(process.env.NODE_ENV === 'production') {
         logging: true
     });
 } else {
-    sequelize = new Sequelize('cdj02_db', 'root', '', {
+    sequelize = new Sequelize('cdje02_db', 'root', '', {
         host: 'localhost',
         dialect: 'mariadb',
         dialectOptions: {
@@ -25,11 +27,12 @@ if(process.env.NODE_ENV === 'production') {
 }
 
 const User = UserModel(sequelize, DataTypes);
+const Comity = ComityModel(sequelize, DataTypes);
 
 const initDb = () => {
     return sequelize.sync({force: true}).then(_ => {
         bcrypt.hash('admin', 10)
-            .then(hash => User.create({username: 'admin', password: hash}))
+            .then(hash => User.create({mail: 'admin@admin.fr', password: hash}))
             .then(user => console.log(user.toJSON()));
 
         console.log('La base de donnée a bien été initialisée !');
@@ -37,5 +40,5 @@ const initDb = () => {
 };
 
 module.exports = {
-    initDb, User
+    initDb, User, Comity
 };
