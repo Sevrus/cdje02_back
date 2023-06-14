@@ -1,10 +1,9 @@
 const {Tournament} = require('../../db/sequelize');
-const {Op} = require('sequelize');
 const auth = require('../../auth/auth');
 
 module.exports = (app) => {
     app.get('/api/tournaments', auth, (req, res) => {
-        Tournament.findAll({order: ['name']})
+        Tournament.findAll()
             .then(tournaments => {
                 const message = 'La liste des tournois a bien été récupérée.';
                 res.json({message, data: tournaments});
