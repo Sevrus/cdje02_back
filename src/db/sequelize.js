@@ -4,6 +4,8 @@ const ComityModel = require('../models/comity.js')
 const comities = require('./data/dataComity')
 const tournamentModel = require('../models/tournament.js');
 const tournaments = require('./data/dataTournaments');
+const ClubModel = require('../models/club');
+const clubs = require('./data/dataClubs');
 const bcrypt = require('bcrypt');
 
 const sequelize = new Sequelize('cdje02_db', 'root', '', {
@@ -19,6 +21,7 @@ const sequelize = new Sequelize('cdje02_db', 'root', '', {
 const User = UserModel(sequelize, DataTypes);
 const Comity = ComityModel(sequelize, DataTypes);
 const Tournament = tournamentModel(sequelize, DataTypes);
+const Club = ClubModel(sequelize, DataTypes);
 
 const initDb = () => {
     return sequelize.sync({force: true}).then(_ => {
@@ -32,11 +35,27 @@ const initDb = () => {
                 mail: comity.mail
             }).then(comity => console.log(comity.toJSON()));
         });
+        
         tournaments.map(tournament => {
             Tournament.create({
                 title: tournament.title,
                 link: tournament.link
             }).then(champion => console.log(champion.toJSON()));
+        });
+
+        clubs.map(club => {
+            Club.create({
+                name: club.name,
+                city: club.city,
+                president: club.president,
+                tel: club.tel,
+                site: club.site,
+                members: club.members
+            }, 
+            {
+                include: [Club.Referees]
+            }
+            ).then(club => console.log(club.toJSON()));
         });
         bcrypt.hash('admin', 10)
             .then(hash => User.create({mail: 'admin@admin.fr', password: hash}))
@@ -47,5 +66,5 @@ const initDb = () => {
 };
 
 module.exports = {
-    initDb, User
+    initDb, User, Comity, Tournament, Club
 };
