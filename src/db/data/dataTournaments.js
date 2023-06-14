@@ -1,4 +1,4 @@
-const dataTournament = [
+const dataTournaments = [
     {
         id: 1,
         title: '4e Open International de Saint-Quentin "Mémorial Aloyzas Kveinys"',
@@ -48,4 +48,4 @@ const dataTournament = [
     },
 ]
 
-module.exports = dataTournament;
+module.exports = dataTournaments;
