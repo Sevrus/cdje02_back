@@ -1,7 +1,9 @@
 const {Sequelize, DataTypes} = require('sequelize');
 const UserModel = require('../models/user');
 const tournamentModel = require('../models/tournament.js');
+const aisneChampionModel = require('../models/aisneChampion.js');
 const tournaments = require('./data/dataTournaments');
+const aisneChampions = require('./data/dataAisneChampions');
 const bcrypt = require('bcrypt');
 
 const sequelize = new Sequelize('cdje02_db', 'root', '', {
@@ -23,7 +25,13 @@ const initDb = () => {
             Tournament.create({
                 title: tournament.title,
                 link: tournament.link
-            }).then(champion => console.log(champion.toJSON()));
+            }).then(tournament => console.log(tournament.toJSON()));
+        });
+        aisneChampions.map(aisneChampion => {
+            Tournament.create({
+                name: aisneChampion.name,
+                years: aisneChampion.years
+            }).then(aisneChampion => console.log(aisneChampion.toJSON()));
         });
         bcrypt.hash('admin', 10)
             .then(hash => User.create({mail: 'admin@admin.fr', password: hash}))

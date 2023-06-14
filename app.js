@@ -19,6 +19,11 @@ require('./src/routes/tournament/findTournamentByPk')(app);
 require('./src/routes/tournament/findAllTournament')(app);
 require('./src/routes/tournament/updateTournament')(app);
 require('./src/routes/tournament/deleteTournament')(app);
+require('./src/routes/aisneChampion/createAisneChampion')(app);
+require('./src/routes/aisneChampion/findAisneChampionByPk')(app);
+require('./src/routes/aisneChampion/findAllAisneChampion')(app);
+require('./src/routes/aisneChampion/updateAisneChampion')(app);
+require('./src/routes/aisneChampion/deleteAisneChampion')(app);
 
 //Gestion des erreurs 404
 app.use(({res}) => {
