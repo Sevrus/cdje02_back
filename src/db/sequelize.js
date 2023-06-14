@@ -6,6 +6,7 @@ const tournamentModel = require('../models/tournament.js');
 const tournaments = require('./data/dataTournaments');
 const ClubModel = require('../models/club');
 const clubs = require('./data/dataClubs');
+
 const bcrypt = require('bcrypt');
 
 const sequelize = new Sequelize('cdje02_db', 'root', '', {
@@ -35,7 +36,7 @@ const initDb = () => {
                 mail: comity.mail
             }).then(comity => console.log(comity.toJSON()));
         });
-        
+
         tournaments.map(tournament => {
             Tournament.create({
                 title: tournament.title,

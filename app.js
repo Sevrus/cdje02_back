@@ -34,6 +34,7 @@ require('./src/routes/clubs/findClubByPk')(app);
 require('./src/routes/clubs/updateClub')(app);
 
 
+
 //Gestion des erreurs 404
 app.use(({res}) => {
     const message = 'Impossible de trouver la ressource demandée! Vous pouvez essayer une autre url.';
