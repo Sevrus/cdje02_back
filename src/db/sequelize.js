@@ -13,13 +13,13 @@ const regulations = require('./data/dataRegulation');
 const bcrypt = require('bcrypt');
 
 const sequelize = new Sequelize('cdje02_db', 'root', '', {
-        host: 'localhost',
-        dialect: 'mariadb',
-        dialectOptions: {
-            timezone: 'Etc/GMT+2',
-        },
-        logging: false
-    });
+    host: 'localhost',
+    dialect: 'mariadb',
+    dialectOptions: {
+        timezone: 'Etc/GMT+2',
+    },
+    logging: false
+});
 
 
 const User = UserModel(sequelize, DataTypes);
@@ -30,7 +30,7 @@ const Regulation = RegulationModel(sequelize, DataTypes);
 const AisneChampion = aisneChampionModel(sequelize, DataTypes);
 
 const initDb = () => {
-    return sequelize.sync({force: true}).then(_ => {
+    return sequelize.sync({ force: true }).then(_ => {
         comities.map(comity => {
             Comity.create({
                 title: comity.title,
@@ -41,7 +41,7 @@ const initDb = () => {
                 mail: comity.mail
             }).then(comity => console.log(comity.toJSON()));
         });
-        
+
         tournaments.map(tournament => {
             Tournament.create({
                 title: tournament.title,
@@ -71,14 +71,14 @@ const initDb = () => {
                 tel: club.tel,
                 site: club.site,
                 members: club.members
-            }, 
-            {
-                include: [Club.Referees]
-            }
+            },
+                {
+                    include: [Club.Referees]
+                }
             ).then(club => console.log(club.toJSON()));
         });
         bcrypt.hash('admin', 10)
-            .then(hash => User.create({mail: 'admin@admin.fr', password: hash}))
+            .then(hash => User.create({ mail: 'admin@admin.fr', password: hash }))
             .then(user => console.log(user.toJSON()));
 
         console.log('La base de donnée a bien été initialisée !');
