@@ -14,6 +14,11 @@ sequelize.initDb();
 
 //Points de terminaison
 require('./src/routes/login')(app);
+require('./src/routes/tournament/createTournament')(app);
+require('./src/routes/tournament/findTournamentByPk')(app);
+require('./src/routes/tournament/findAllTournament')(app);
+require('./src/routes/tournament/updateTournament')(app);
+require('./src/routes/tournament/deleteTournament')(app);
 
 //Gestion des erreurs 404
 app.use(({res}) => {
