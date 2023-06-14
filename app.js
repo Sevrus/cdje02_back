@@ -27,11 +27,11 @@ require('./src/routes/aisneChampion/findAllAisneChampion')(app);
 require('./src/routes/aisneChampion/updateAisneChampion')(app);
 require('./src/routes/aisneChampion/deleteAisneChampion')(app);
 // Comity
-require('./src/routes/comity/createComity')(app);
-require('./src/routes/comity/findComityByPk')(app);
-require('./src/routes/comity/findAllComity')(app);
-require('./src/routes/comity/updateComity')(app);
-require('./src/routes/comity/deleteComity')(app);
+// require('./src/routes/comity/createComity')(app);
+// require('./src/routes/comity/findComityByPk')(app);
+// require('./src/routes/comity/findAllComity')(app);
+// require('./src/routes/comity/updateComity')(app);
+// require('./src/routes/comity/deleteComity')(app);
 // Clubs
 require('./src/routes/clubs/createClub')(app);
 require('./src/routes/clubs/deleteClub')(app);
@@ -44,6 +44,12 @@ require('./src/routes/regulation/deleteRegulation')(app);
 require('./src/routes/regulation/findAllRegulation')(app);
 require('./src/routes/regulation/findRegulationByPk')(app);
 require('./src/routes/regulation/updateRegulation')(app);
+// News
+require('./src/routes/news/createNew')(app);
+require('./src/routes/news/deleteNew')(app);
+require('./src/routes/news/findAllNew')(app);
+require('./src/routes/news/findNewbyPk')(app);
+require('./src/routes/news/updateNew')(app);
 
 
 
