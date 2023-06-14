@@ -15,6 +15,8 @@ sequelize.initDb();
 //Points de terminaison
 require('./src/routes/login')(app);
 
+
+
 //Gestion des erreurs 404
 app.use(({res}) => {
     const message = 'Impossible de trouver la ressource demandée! Vous pouvez essayer une autre url.';
