@@ -8,6 +8,8 @@ const comities = require('./data/dataComity');
 const tournaments = require('./data/dataTournaments');
 const aisneChampions = require('./data/dataAisneChampions');
 const clubs = require('./data/dataClubs');
+const RegulationModel = require('../models/regulation');
+const regulations = require('./data/dataRegulation');
 const bcrypt = require('bcrypt');
 
 const sequelize = new Sequelize('cdje02_db', 'root', '', {
@@ -24,6 +26,7 @@ const User = UserModel(sequelize, DataTypes);
 const Comity = ComityModel(sequelize, DataTypes);
 const Tournament = tournamentModel(sequelize, DataTypes);
 const Club = ClubModel(sequelize, DataTypes);
+const Regulation = RegulationModel(sequelize, DataTypes);
 const AisneChampion = aisneChampionModel(sequelize, DataTypes);
 
 const initDb = () => {
@@ -44,6 +47,13 @@ const initDb = () => {
                 title: tournament.title,
                 link: tournament.link
             }).then(tournament => console.log(tournament.toJSON()));
+        });
+
+        regulations.map(regulation => {
+            Regulation.create({
+                title: regulation.title,
+                link: regulation.link
+            }).then(champion => console.log(champion.toJSON()));
         });
 
         aisneChampions.map(aisneChampion => {
@@ -76,5 +86,5 @@ const initDb = () => {
 };
 
 module.exports = {
-    initDb, User, Comity, Tournament, Club
+    initDb, User, Comity, Tournament, Club, Regulation, AisneChampion
 };
