@@ -45,6 +45,8 @@ require('./src/routes/regulation/findAllRegulation')(app);
 require('./src/routes/regulation/findRegulationByPk')(app);
 require('./src/routes/regulation/updateRegulation')(app);
 
+
+
 //Gestion des erreurs 404
 app.use(({res}) => {
     const message = 'Impossible de trouver la ressource demandée! Vous pouvez essayer une autre url.';
