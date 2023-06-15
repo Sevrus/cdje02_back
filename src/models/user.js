@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         mail: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
             isEmail: true,
             unique: {
                 msg: 'Ce mail est déjà pris.'

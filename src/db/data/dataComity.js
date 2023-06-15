@@ -2,7 +2,7 @@ const dataComity = [
     {
         id: 1,
         title: 'PRÉSIDENT',
-        image: '/images/bracq.png',
+        image: 'https://zupimages.net/viewer.php?id=23/24/do6d.png',
         alt: 'La photo du président',
         firstName: 'Bracq',
         lastName: 'Christian',
@@ -11,7 +11,7 @@ const dataComity = [
     {
         id: 2,
         title: 'SECRÉTAIRE',
-        image: '/images/labroche.png',
+        image: 'https://zupimages.net/viewer.php?id=23/24/1f5b.png',
         alt: 'La photo du secrétaire',
         firstName: 'Labroche',
         lastName: 'Jérome',
@@ -20,7 +20,7 @@ const dataComity = [
     {
         id: 3,
         title: 'TRÉSORIER',
-        image: '/images/beaumont.png',
+        image: 'https://zupimages.net/viewer.php?id=23/24/1f5b.png',
         alt: 'La photo du trésorier',
         firstName: 'Beaumont',
         lastName: 'Philippe',
