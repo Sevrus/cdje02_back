@@ -21,7 +21,6 @@ const sequelize = new Sequelize('cdje02_db', 'root', '', {
         logging: false
     });
 
-
 const User = UserModel(sequelize, DataTypes);
 const Comity = ComityModel(sequelize, DataTypes);
 const Tournament = tournamentModel(sequelize, DataTypes);
