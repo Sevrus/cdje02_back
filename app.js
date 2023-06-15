@@ -44,6 +44,15 @@ require('./src/routes/regulation/deleteRegulation')(app);
 require('./src/routes/regulation/findAllRegulation')(app);
 require('./src/routes/regulation/findRegulationByPk')(app);
 require('./src/routes/regulation/updateRegulation')(app);
+// News
+require('./src/routes/news/createNew')(app);
+require('./src/routes/news/deleteNew')(app);
+require('./src/routes/news/findAllNew')(app);
+require('./src/routes/news/findNewbyPk')(app);
+require('./src/routes/news/updateNew')(app);
+
+
+
 
 //Gestion des erreurs 404
 app.use(({res}) => {

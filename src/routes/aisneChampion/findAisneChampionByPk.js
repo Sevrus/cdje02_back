@@ -9,7 +9,7 @@ module.exports = (app) => {
                     const message = 'Le champion demandé n\'existe pas. Réessayez avec un autre identifiant';
                     return res.status(404).json({ message });
                 }
-                const message = 'Un champion a bien été trouvé';
+                const message = `Le champion ${aisneChampion.name} a bien été trouvé`;
                 res.json({message, data: aisneChampion});
             })
             .catch(error => {

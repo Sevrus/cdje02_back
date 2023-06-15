@@ -7,6 +7,7 @@ const dataClubs = [
         tel: '03.23.09.86.47',
         site: 'https://bernot.clubeo.com/',
         members: 10,
+        created: new Date(),
     },
     {
         id: 2,
@@ -16,6 +17,7 @@ const dataClubs = [
         tel: '06 29 07 44 20',
         site: 'http://petitea.free.fr',
         members: 71,
+        created: new Date(),
     },
     {
         id: 3,
@@ -25,6 +27,7 @@ const dataClubs = [
         tel: '',
         site: 'http://sites.google.com/site/echecslafere/',
         members: 14,
+        created: new Date(),
     },
     {
         id: 4,
@@ -34,6 +37,7 @@ const dataClubs = [
         tel: '06 22 09 38 85',
         site: '',
         members: 8,
+        created: new Date(),
     },
     {
         id: 5,
@@ -43,6 +47,7 @@ const dataClubs = [
         tel: '',
         site: 'http://roirouge.clubeo.com',
         members: 41,
+        created: new Date(),
     },
     {
         id: 6,
@@ -52,6 +57,7 @@ const dataClubs = [
         tel: '06 25 79 02 00',
         site: 'http://www.THFechecs.com',
         members: 97,
+        created: new Date(),
     },
     {
         id: 7,
@@ -61,6 +67,7 @@ const dataClubs = [
         tel: '06 51 68 88 05',
         site: 'http://www.echiquier-soissonnais.fr',
         members: 44,
+        created: new Date(),
     }
 ]
 

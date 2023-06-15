@@ -1,4 +1,4 @@
-const {Sequelize, DataTypes} = require('sequelize');
+const { Sequelize, DataTypes } = require('sequelize');
 const UserModel = require('../models/user');
 const ComityModel = require('../models/comity.js');
 const tournamentModel = require('../models/tournamentModel.js');
@@ -10,16 +10,18 @@ const aisneChampions = require('./data/dataAisneChampions');
 const clubs = require('./data/dataClubs');
 const RegulationModel = require('../models/regulation');
 const regulations = require('./data/dataRegulation');
+const NewsModel = require('../models/news');
+const news = require('./data/dataNews');
 const bcrypt = require('bcrypt');
 
 const sequelize = new Sequelize('cdje02_db', 'root', '', {
-        host: 'localhost',
-        dialect: 'mariadb',
-        dialectOptions: {
-            timezone: 'Etc/GMT+2',
-        },
-        logging: false
-    });
+    host: 'localhost',
+    dialect: 'mariadb',
+    dialectOptions: {
+        timezone: 'Etc/GMT+2',
+    },
+    logging: false
+});
 
 const User = UserModel(sequelize, DataTypes);
 const Comity = ComityModel(sequelize, DataTypes);
@@ -27,9 +29,10 @@ const Tournament = tournamentModel(sequelize, DataTypes);
 const Club = ClubModel(sequelize, DataTypes);
 const Regulation = RegulationModel(sequelize, DataTypes);
 const AisneChampion = aisneChampionModel(sequelize, DataTypes);
+const News = NewsModel(sequelize, DataTypes);
 
 const initDb = () => {
-    return sequelize.sync({force: true}).then(_ => {
+    return sequelize.sync({ force: true }).then(_ => {
         comities.map(comity => {
             Comity.create({
                 title: comity.title,
@@ -40,7 +43,15 @@ const initDb = () => {
                 mail: comity.mail
             }).then(comity => console.log(comity.toJSON()));
         });
-        
+
+        news.map(n => {
+            News.create({
+                title: n.title,
+                author: n.author,
+                description: n.description,
+            }).then(n => console.log(n.toJSON()));
+        });
+
         tournaments.map(tournament => {
             Tournament.create({
                 title: tournament.title,
@@ -52,7 +63,7 @@ const initDb = () => {
             Regulation.create({
                 title: regulation.title,
                 link: regulation.link
-            }).then(champion => console.log(champion.toJSON()));
+            }).then(regulation => console.log(regulation.toJSON()));
         });
 
         aisneChampions.map(aisneChampion => {
@@ -70,14 +81,14 @@ const initDb = () => {
                 tel: club.tel,
                 site: club.site,
                 members: club.members
-            }, 
-            {
-                include: [Club.Referees]
-            }
+            },
+                {
+                    include: [Club.Referees]
+                }
             ).then(club => console.log(club.toJSON()));
         });
         bcrypt.hash('admin', 10)
-            .then(hash => User.create({mail: 'admin@admin.fr', password: hash}))
+            .then(hash => User.create({ mail: 'admin@admin.fr', password: hash }))
             .then(user => console.log(user.toJSON()));
 
         console.log('La base de donnée a bien été initialisée !');
@@ -85,5 +96,5 @@ const initDb = () => {
 };
 
 module.exports = {
-    initDb, User, Comity, Tournament, Club, Regulation, AisneChampion
+    initDb, User, Comity, Tournament, Club, Regulation, AisneChampion, News
 };
