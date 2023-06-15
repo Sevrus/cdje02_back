@@ -58,12 +58,13 @@ const initDb = () => {
             }).then(comity => console.log(comity.toJSON()));
         });
 
-        news.map(n => {
+        news.map(news => {
             News.create({
-                title: n.title,
-                author: n.author,
-                description: n.description,
-            }).then(n => console.log(n.toJSON()));
+                title: news.title,
+                author: news.author,
+                description: news.description,
+                image: news.image
+            }).then(news => console.log(news.toJSON()));
         });
 
         tournaments.map(tournament => {
