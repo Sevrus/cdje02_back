@@ -50,6 +50,12 @@ require('./src/routes/news/deleteNew')(app);
 require('./src/routes/news/findAllNew')(app);
 require('./src/routes/news/findNewbyPk')(app);
 require('./src/routes/news/updateNew')(app);
+// Referees
+require('./src/routes/referee/createReferee')(app);
+require('./src/routes/referee/findRefereeByPk')(app);
+require('./src/routes/referee/findAllReferee')(app);
+require('./src/routes/referee/updateReferee')(app);
+require('./src/routes/referee/deleteReferee')(app);
 
 
 

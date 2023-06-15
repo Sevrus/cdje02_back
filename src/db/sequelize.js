@@ -1,12 +1,14 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const UserModel = require('../models/user');
+const RefereeModel = require('../models/referee.js')
+const referees = require('./data/dataReferee')
 const ComityModel = require('../models/comity.js');
-const tournamentModel = require('../models/tournamentModel.js');
-const aisneChampionModel = require('../models/aisneChampionModel.js');
-const ClubModel = require('../models/club');
 const comities = require('./data/dataComity');
+const tournamentModel = require('../models/tournamentModel.js');
 const tournaments = require('./data/dataTournaments');
+const aisneChampionModel = require('../models/aisneChampionModel.js');
 const aisneChampions = require('./data/dataAisneChampions');
+const ClubModel = require('../models/club');
 const clubs = require('./data/dataClubs');
 const RegulationModel = require('../models/regulation');
 const regulations = require('./data/dataRegulation');
@@ -31,9 +33,20 @@ const Club = ClubModel(sequelize, DataTypes);
 const Regulation = RegulationModel(sequelize, DataTypes);
 const AisneChampion = aisneChampionModel(sequelize, DataTypes);
 const News = NewsModel(sequelize, DataTypes);
+const Referee = RefereeModel(sequelize, DataTypes);
 
 const initDb = () => {
     return sequelize.sync({ force: true }).then(_ => {
+
+        referees.map(referee => {
+            Referee.create({
+                name: referee.name,
+                title: referee.title,
+                validity: referee.validity,
+                club: referee.club,
+                }).then(referee => console.log(referee.toJSON()));
+        });
+
         comities.map(comity => {
             Comity.create({
                 title: comity.title,
@@ -97,5 +110,5 @@ const initDb = () => {
 };
 
 module.exports = {
-    initDb, User, Comity, Tournament, Club, Regulation, AisneChampion, News
+    initDb, User, Comity, Tournament, Club, Regulation, AisneChampion, News, Referee
 };
