@@ -96,9 +96,9 @@ const initDb = () => {
                 site: club.site,
                 members: club.members
             },
-                {
-                    include: [Club.Referees]
-                }
+                // {
+                //     include: [Club.Referees]
+                // }
             ).then(club => console.log(club.toJSON()));
         });
         bcrypt.hash('admin', 10)

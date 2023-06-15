@@ -82,31 +82,7 @@ const dataAisneChampions = [
         name: 'Jérôme Labroche',
         years: '2018-2019',
         created: new Date()
-    },
-    {
-        id: 14,
-        name: '',
-        years: '2019-2020',
-        created: new Date()
-    },
-    {
-        id: 15,
-        name: '',
-        years: '2020-2021',
-        created: new Date()
-    },
-    {
-        id: 16,
-        name: '',
-        years: '2021-2022',
-        created: new Date()
-    },
-    {
-        id: 17,
-        name: '',
-        years: '2022-2023',
-        created: new Date()
-    },
+    }
 ]
 
 module.exports = dataAisneChampions;
