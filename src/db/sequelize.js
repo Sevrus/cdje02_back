@@ -98,11 +98,7 @@ const initDb = () => {
                 members: club.members,
                 coordx: club.coordx,
                 coordy: club.coordy
-            },
-                // {
-                //     include: [Club.Referees]
-                // }
-            ).then(club => console.log(club.toJSON()));
+            }).then(club => console.log(club.toJSON()));
         });
         bcrypt.hash('admin', 10)
             .then(hash => User.create({ mail: 'admin@admin.fr', password: hash }))

@@ -45,9 +45,6 @@ module.exports = (sequelize, DataTypes) => {
             }
         }
     },
-        // {
-        //     sequelize, modelName: 'club'
-        // },
         {
             timestamps: true,
             createdAt: 'created',
