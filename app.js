@@ -2,11 +2,16 @@ const express = require('express');
 const morgan = require ('morgan');
 const bodyParser = require('body-parser');
 const sequelize = require('./src/db/sequelize');
+const cors = require('cors');
 
 const app = express();
 const port = process.env.PORT || 3000;
+const corsOptions = {
+    origin: "http://localhost:5173"
+  };
 
 app
+.use(cors(corsOptions))
 .use(morgan('dev'))
 .use(bodyParser.json());
 

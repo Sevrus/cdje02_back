@@ -47,6 +47,14 @@ module.exports = (sequelize, DataTypes) => {
         members: {
             type: DataTypes.INTEGER,
             allowNull: true,
+        },
+        coordx: {
+            type: DataTypes.FLOAT,
+            allowNull: true,
+        },
+        coordy: {
+            type: DataTypes.FLOAT,
+            allowNull: true,
         }
     },
     {

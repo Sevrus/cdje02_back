@@ -1,8 +1,7 @@
 const { News } = require('../../db/sequelize');
-const auth = require('../../auth/auth');
 
 module.exports = (app) => {
-    app.get('/api/news /:id', auth, (req, res) => {
+    app.get('/api/news /:id', (req, res) => {
         News.findByPk(req.params.id)
             .then(news => {
                 if (news === null) {

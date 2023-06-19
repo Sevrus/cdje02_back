@@ -95,7 +95,9 @@ const initDb = () => {
                 president: club.president,
                 tel: club.tel,
                 site: club.site,
-                members: club.members
+                members: club.members,
+                coordx: club.coordx,
+                coordy: club.coordy
             },
                 // {
                 //     include: [Club.Referees]

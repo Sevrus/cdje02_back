@@ -1,8 +1,7 @@
 const { News } = require('../../db/sequelize');
-const auth = require('../../auth/auth');
 
 module.exports = (app) => {
-    app.get('/api/news', auth, (req, res) => {
+    app.get('/api/news', (req, res) => {
         News.findAll()
             .then(news => {
                 const message = `La liste des articles a bien été récupérée.`;

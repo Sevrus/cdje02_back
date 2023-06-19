@@ -1,8 +1,7 @@
 const {Regulation} = require('../../db/sequelize');
-const auth = require('../../auth/auth');
 
 module.exports = (app) => {
-    app.get('/api/regulations', auth, (req, res) => {
+    app.get('/api/regulations', (req, res) => {
         Regulation.findAll()
             .then(regulation => {
                 const message = 'La liste des règlements a bien été récupérée.';

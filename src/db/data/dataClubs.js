@@ -7,6 +7,8 @@ const dataClubs = [
         tel: '03.23.09.86.47',
         site: 'https://bernot.clubeo.com/',
         members: 10,
+        coordx: 49.869193616219306,
+        coordy: 3.498634979219761,
         created: new Date(),
     },
     {
@@ -17,6 +19,8 @@ const dataClubs = [
         tel: '06 29 07 44 20',
         site: 'http://petitea.free.fr',
         members: 71,
+        coordx: 49.04729203170085,
+        coordy: 3.399767194606112,
         created: new Date(),
     },
     {
@@ -27,6 +31,8 @@ const dataClubs = [
         tel: '',
         site: 'http://sites.google.com/site/echecslafere/',
         members: 14,
+        coordx: 49.66152094338419, 
+        coordy: 3.3678617236475716,
         created: new Date(),
     },
     {
@@ -37,6 +43,8 @@ const dataClubs = [
         tel: '06 22 09 38 85',
         site: '',
         members: 8,
+        coordx: 49.91785490184496,
+        coordy: 3.2776959424251433,
         created: new Date(),
     },
     {
@@ -47,6 +55,8 @@ const dataClubs = [
         tel: '',
         site: 'http://roirouge.clubeo.com',
         members: 41,
+        coordx: 49.41940967809836,
+        coordy: 4.008477498231653,
         created: new Date(),
     },
     {
@@ -57,6 +67,8 @@ const dataClubs = [
         tel: '06 25 79 02 00',
         site: 'http://www.THFechecs.com',
         members: 97,
+        coordx: 49.852827768297935,
+        coordy: 3.280618228304189,
         created: new Date(),
     },
     {
@@ -67,6 +79,8 @@ const dataClubs = [
         tel: '06 51 68 88 05',
         site: 'http://www.echiquier-soissonnais.fr',
         members: 44,
+        coordx: 49.388855530278114,
+        coordy: 3.3219354493229134,
         created: new Date(),
     }
 ]

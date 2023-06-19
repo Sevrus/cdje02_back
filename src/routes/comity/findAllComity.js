@@ -1,9 +1,8 @@
 const { Comity } = require('../../db/sequelize');
 const { Op } = require('sequelize');
-const auth = require('../../auth/auth');
 
 module.exports = (app) => {
-    app.get('/api/comities', auth, (req, res) => {
+    app.get('/api/comities', (req, res) => {
         Champion.findAll({ order: ['title'] })
             .then(comities => {
                 const message = 'La liste des membres du comité a bien été récupérée.';

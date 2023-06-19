@@ -1,9 +1,8 @@
 const { Referee } = require('../../db/sequelize');
 const { Op } = require('sequelize');
-const auth = require('../../auth/auth');
 
 module.exports = (app) => {
-    app.get('/api/referees', auth, (req, res) => {
+    app.get('/api/referees', (req, res) => {
         Referee.findAll({ order: ['validity'] })
             .then(referee => {
                 const message = 'La liste des arbitres a bien été récupérée.';
