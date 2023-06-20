@@ -1,5 +1,4 @@
 const { Referee } = require('../../db/sequelize');
-const { Op } = require('sequelize');
 
 module.exports = (app) => {
     app.get('/api/referees', (req, res) => {

@@ -63,5 +63,3 @@ module.exports = (sequelize, DataTypes) => {
         updatedAt: false
     })
 };
-
-// Club.Referees = Club.hasMany(Referee);
