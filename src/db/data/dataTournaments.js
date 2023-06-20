@@ -1,7 +1,7 @@
 const dataTournaments = [
     {
         id: 1,
-        title: '4e Open International de Saint-Quentin "Mémorial Aloyzas Kveinys"',
+        title: '4e Open International de Saint-Quentin',
         link: 'http://www.echecs.asso.fr/FicheTournoi.aspx?Ref=57712',
         created: new Date()
     },

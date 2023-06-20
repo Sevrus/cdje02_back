@@ -63,7 +63,8 @@ const initDb = () => {
                 title: news.title,
                 author: news.author,
                 description: news.description,
-                image: news.image
+                image: news.image,
+                created: news.created
             }).then(news => console.log(news.toJSON()));
         });
 

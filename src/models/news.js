@@ -40,11 +40,15 @@ module.exports = (sequelize, DataTypes) => {
                 notNull: { msg: `L'image est requise.` },
                 notEmpty: { msg: 'L\'image ne peut pas être vide.' },
             }
+        },
+        created: {
+            type: DataTypes.DATEONLY,
+            allowNull: false,
         }
     },
         {
             timestamps: true,
-            createdAt: 'created',
+            createdAt: false,
             updatedAt: false
         });
 };
