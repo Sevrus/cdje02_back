@@ -55,6 +55,10 @@ module.exports = (sequelize, DataTypes) => {
         coordy: {
             type: DataTypes.FLOAT,
             allowNull: true,
+        },
+        created: {
+            type: DataTypes.DATEONLY,
+            allowNull: false,
         }
     },
     {

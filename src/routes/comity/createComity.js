@@ -3,10 +3,10 @@ const { ValidationError, UniqueConstraintError } = require('sequelize');
 const auth = require('../../auth/auth');
 
 module.exports = (app) => {
-    app.post('/api/comities', auth, (req, res) => {
+    app.post('/api/comities', auth,(req, res) => {
         Comity.create(req.body)
             .then(comity => {
-                const message = `Le membre ${req.body.firstname} ${req.body.lastname} a bien été crée.`
+                const message = `Le membre ${req.body.firstName} ${req.body.lastName} a bien été crée.`
                 res.json({ message, data: comity })
             })
             .catch(error => {
