@@ -1,12 +1,14 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const UserModel = require('../models/user');
+const RefereeModel = require('../models/referee.js')
+const referees = require('./data/dataReferee')
 const ComityModel = require('../models/comity.js');
-const tournamentModel = require('../models/tournamentModel.js');
-const aisneChampionModel = require('../models/aisneChampionModel.js');
-const ClubModel = require('../models/club');
 const comities = require('./data/dataComity');
+const tournamentModel = require('../models/tournamentModel.js');
 const tournaments = require('./data/dataTournaments');
+const aisneChampionModel = require('../models/aisneChampionModel.js');
 const aisneChampions = require('./data/dataAisneChampions');
+const ClubModel = require('../models/club');
 const clubs = require('./data/dataClubs');
 const RegulationModel = require('../models/regulation');
 const regulations = require('./data/dataRegulation');
@@ -30,9 +32,20 @@ const Club = ClubModel(sequelize, DataTypes);
 const Regulation = RegulationModel(sequelize, DataTypes);
 const AisneChampion = aisneChampionModel(sequelize, DataTypes);
 const News = NewsModel(sequelize, DataTypes);
+const Referee = RefereeModel(sequelize, DataTypes);
 
 const initDb = () => {
     return sequelize.sync({ force: true }).then(_ => {
+
+        referees.map(referee => {
+            Referee.create({
+                name: referee.name,
+                title: referee.title,
+                validity: referee.validity,
+                club: referee.club,
+                }).then(referee => console.log(referee.toJSON()));
+        });
+
         comities.map(comity => {
             Comity.create({
                 title: comity.title,
@@ -44,12 +57,14 @@ const initDb = () => {
             }).then(comity => console.log(comity.toJSON()));
         });
 
-        news.map(n => {
+        news.map(news => {
             News.create({
-                title: n.title,
-                author: n.author,
-                description: n.description,
-            }).then(n => console.log(n.toJSON()));
+                title: news.title,
+                author: news.author,
+                description: news.description,
+                image: news.image,
+                created: news.created
+            }).then(news => console.log(news.toJSON()));
         });
 
         tournaments.map(tournament => {
@@ -80,12 +95,10 @@ const initDb = () => {
                 president: club.president,
                 tel: club.tel,
                 site: club.site,
-                members: club.members
-            },
-                {
-                    include: [Club.Referees]
-                }
-            ).then(club => console.log(club.toJSON()));
+                members: club.members,
+                coordx: club.coordx,
+                coordy: club.coordy
+            }).then(club => console.log(club.toJSON()));
         });
         bcrypt.hash('admin', 10)
             .then(hash => User.create({ mail: 'admin@admin.fr', password: hash }))
@@ -96,5 +109,5 @@ const initDb = () => {
 };
 
 module.exports = {
-    initDb, User, Comity, Tournament, Club, Regulation, AisneChampion, News
+    initDb, User, Comity, Tournament, Club, Regulation, AisneChampion, News, Referee
 };

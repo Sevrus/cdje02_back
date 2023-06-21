@@ -2,11 +2,16 @@ const express = require('express');
 const morgan = require ('morgan');
 const bodyParser = require('body-parser');
 const sequelize = require('./src/db/sequelize');
+const cors = require('cors');
 
 const app = express();
 const port = process.env.PORT || 3000;
+const corsOptions = {
+    origin: "http://localhost:5173"
+  };
 
 app
+.use(cors(corsOptions))
 .use(morgan('dev'))
 .use(bodyParser.json());
 
@@ -50,7 +55,12 @@ require('./src/routes/news/deleteNew')(app);
 require('./src/routes/news/findAllNew')(app);
 require('./src/routes/news/findNewbyPk')(app);
 require('./src/routes/news/updateNew')(app);
-
+// Referees
+require('./src/routes/referee/createReferee')(app);
+require('./src/routes/referee/findRefereeByPk')(app);
+require('./src/routes/referee/findAllReferee')(app);
+require('./src/routes/referee/updateReferee')(app);
+require('./src/routes/referee/deleteReferee')(app);
 
 
 

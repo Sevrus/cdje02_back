@@ -47,6 +47,14 @@ module.exports = (sequelize, DataTypes) => {
         members: {
             type: DataTypes.INTEGER,
             allowNull: true,
+        },
+        coordx: {
+            type: DataTypes.FLOAT,
+            allowNull: true,
+        },
+        coordy: {
+            type: DataTypes.FLOAT,
+            allowNull: true,
         }
     },
     {
@@ -55,5 +63,3 @@ module.exports = (sequelize, DataTypes) => {
         updatedAt: false
     })
 };
-
-// Club.Referees = Club.hasMany(Referee);

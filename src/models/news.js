@@ -33,9 +33,22 @@ module.exports = (sequelize, DataTypes) => {
                 }
             }
         },
-    }, {
-        timestamps: true,
-        createdAt: 'created',
-        updatedAt: false
-    });
+        image: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                notNull: { msg: `L'image est requise.` },
+                notEmpty: { msg: 'L\'image ne peut pas être vide.' },
+            }
+        },
+        created: {
+            type: DataTypes.DATEONLY,
+            allowNull: false,
+        }
+    },
+        {
+            timestamps: true,
+            createdAt: false,
+            updatedAt: false
+        });
 };
