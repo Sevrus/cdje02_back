@@ -1,8 +1,7 @@
 const {AisneChampion} = require('../../db/sequelize');
-const auth = require('../../auth/auth');
 
 module.exports = (app) => {
-    app.get('/api/aisnechampions', auth, (req, res) => {
+    app.get('/api/aisnechampions', (req, res) => {
             AisneChampion.findAll()
                 .then(aisneChampions => {
                     const message = 'La liste des champions a bien été récupérée.';
