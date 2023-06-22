@@ -5,16 +5,18 @@ module.exports = (sequelize, DataTypes) => {
             primaryKey: true,
             autoIncrement: true
         },
-        mail: {
+        email: {
             type: DataTypes.STRING,
             allowNull: true,
             isEmail: true,
             unique: {
-                msg: 'Ce mail est déjà pris.'
+                msg: 'Cet email est déjà pris.'
             }
         },
         password: {
             type: DataTypes.STRING
         }
-    })
-}
+    }, {
+      tableName: 'users'
+    });
+};
