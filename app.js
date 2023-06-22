@@ -18,7 +18,7 @@ app
 sequelize.initDb();
 
 //Points de terminaison
-require('./src/routes/login')(app);
+require('./src/routes/users/login')(app);
 // Tournaments
 require('./src/routes/tournament/createTournament')(app);
 require('./src/routes/tournament/findTournamentByPk')(app);
