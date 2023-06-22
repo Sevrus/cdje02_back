@@ -61,6 +61,11 @@ require('./src/routes/referee/findRefereeByPk')(app);
 require('./src/routes/referee/findAllReferee')(app);
 require('./src/routes/referee/updateReferee')(app);
 require('./src/routes/referee/deleteReferee')(app);
+// Users
+require('./src/routes/users/createUser')(app);
+require('./src/routes/users/findAllUser')(app);
+require('./src/routes/users/updateUser')(app);
+require('./src/routes/users/deleteUser')(app);
 
 
 
