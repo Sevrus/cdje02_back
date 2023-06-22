@@ -1,9 +1,9 @@
 const { Comity } = require('../../db/sequelize');
 const { ValidationError, UniqueConstraintError } = require("sequelize");
-//const auth = require('../../auth/auth');
+const auth = require('../../auth/auth');
 
 module.exports = (app) => {
-    app.put('/api/comities/:id', (req, res) => {
+    app.put('/api/comities/:id', auth, (req, res) => {
         const id = req.params.id;
         Comity.update(req.body, {
             where: { id: id }
