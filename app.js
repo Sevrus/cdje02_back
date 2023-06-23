@@ -10,6 +10,7 @@ const corsOptions = {
     origin: "http://localhost:5173"
   };
 
+// Middleware
 app
 .use(cors(corsOptions))
 .use(morgan('dev'))
@@ -17,7 +18,7 @@ app
 
 sequelize.initDb();
 
-//Points de terminaison
+//Endpoints
 require('./src/routes/users/login')(app);
 // Tournaments
 require('./src/routes/tournament/createTournament')(app);
