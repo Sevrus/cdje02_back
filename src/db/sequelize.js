@@ -101,7 +101,7 @@ const initDb = () => {
             }).then(club => console.log(club.toJSON()));
         });
 
-        bcrypt.hash('admin', 10)
+        bcrypt.hash('Admin!001', 10)
             .then(hash => User.create({ email: 'admin@admin.fr', password: hash }))
             .then(user => console.log(user.toJSON()));
 
