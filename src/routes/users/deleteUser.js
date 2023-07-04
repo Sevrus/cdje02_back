@@ -8,7 +8,7 @@ module.exports = (app) => {
                 const message = `L'utilisateur demandé n'existe pas.Réessayez avec un autre identifiant.`;
                 return res.status(404).json({message});
             }
-            const userDeleted = tournament;
+            const userDeleted = user;
             return User.destroy({
                 where: {id: user.id}
             })
