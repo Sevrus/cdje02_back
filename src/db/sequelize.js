@@ -102,7 +102,7 @@ const initDb = () => {
         });
 
         bcrypt.hash('Admin!001', 10)
-            .then(hash => User.create({ email: 'shanagan77@gmail.com', password: hash }))
+            .then(hash => User.create({ email: 'admin@admin.fr', password: hash }))
             .then(user => console.log(user.toJSON()));
 
         console.log('La base de donnée a bien été initialisée !');
