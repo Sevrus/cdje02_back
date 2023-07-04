@@ -67,6 +67,10 @@ require('./src/routes/users/createUser')(app);
 require('./src/routes/users/findAllUser')(app);
 require('./src/routes/users/updateUser')(app);
 require('./src/routes/users/deleteUser')(app);
+// ResetPassword
+require('./src/routes/users/resetPassword/forgotPassword')(app);
+require('./src/routes/users/resetPassword/resetPassword')(app);
+
 
 
 
