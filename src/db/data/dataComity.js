@@ -20,7 +20,7 @@ const dataComity = [
     {
         id: 3,
         title: 'TRÉSORIER',
-        image: 'https://www.zupimages.net/up/23/24/do6d.png',
+        image: 'https://zupimages.net/up/23/27/f05p.png',
         alt: 'La photo du trésorier',
         firstName: 'Beaumont',
         lastName: 'Philippe',
