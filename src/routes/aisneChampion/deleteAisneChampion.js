@@ -2,7 +2,7 @@ const {AisneChampion} = require('../../db/sequelize');
 const auth = require('../../auth/auth');
 
 module.exports = (app) => {
-    app.delete('/api/champions/:id', auth, (req, res) => {
+    app.delete('/api/aisnechampions/:id', auth, (req, res) => {
         AisneChampion.findByPk(req.params.id).then(aisneChampion => {
             if(aisneChampion === null) {
                 const message = 'Le champion demandé n\'existe pas.Réessayez avec un autre identifiant.';
