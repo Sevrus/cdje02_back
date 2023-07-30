@@ -1,32 +1,69 @@
 const {User} = require('../../db/sequelize');
 const {ValidationError, UniqueConstraintError} = require("sequelize");
 const auth = require('../../auth/auth');
+const bcrypt = require('bcrypt');
 
 module.exports = (app) => {
     app.put('/api/users/:id', auth, (req, res) =>{
         const id = req.params.id;
-        User.update(req.body, {
-            where: {id: id}
-        })
-            .then(_ => {
-                return User.findByPk(id).then(user => {
-                    if(user === null) {
-                        const message = `L'utilisateur demandé n'existe pas. Réessayez avec un autre identifiant`;
-                        return res.status(404).json({ message });
-                    }
-                    const message = `L'utilisateur ${user.id} a bien été modifié`;
-                    res.json({message, data: user});
+
+        if(req.body.password) {
+            bcrypt.hash(req.body.password, 10)
+                .then((hashedPassword) => {
+                    req.body.password = hashedPassword;
+
+                    User.update(req.body, {
+                        where: { id: id }
+                    })
+                        .then(_ => {
+                            return User.findByPk(id).then(user => {
+                                if (user === null) {
+                                    const message = `L'utilisateur demandé n'existe pas. Réessayez avec un autre identifiant`;
+                                    return res.status(404).json({ message });
+                                }
+                                const message = `L'utilisateur ${user.id} a bien été modifié`;
+                                res.json({ message, data: user });
+                            })
+                        })
+                        .catch(error => {
+                            if (error instanceof ValidationError) {
+                                return res.status(400).json({ message: error.message, data: error });
+                            }
+                            if (error instanceof UniqueConstraintError) {
+                                return res.status(400).json({ message: error.message, data: error })
+                            }
+                            const message = `L'utilisateur n'a pas pu être modifié. Réessayez dans quelques instants.`;
+                            res.status(500).json({ message, data: error });
+                        });
                 })
+                .catch(error => {
+                    const message = `Une erreur s'est produite lors de la cryptage du mot de passe.`;
+                    res.status(500).json({ message, data: error });
+                });
+        } else {
+            User.update(req.body, {
+                where: { id: id }
             })
-            .catch(error => {
-                if (error instanceof ValidationError) {
-                    return res.status(400).json({message: error.message, data: error});
-                }
-                if (error instanceof UniqueConstraintError) {
-                    return res.status(400).json({message: error.message, data: error})
-                }
-                const message = `L'utilisateur n'a pas pu être modifié. Réessayez dans quelques instants.`;
-                res.status(500).json({message, data: error});
-            });
+                .then(_ => {
+                    return User.findByPk(id).then(user => {
+                        if (user === null) {
+                            const message = `L'utilisateur demandé n'existe pas. Réessayez avec un autre identifiant`;
+                            return res.status(404).json({ message });
+                        }
+                        const message = `L'utilisateur ${user.id} a bien été modifié`;
+                        res.json({ message, data: user });
+                    })
+                })
+                .catch(error => {
+                    if (error instanceof ValidationError) {
+                        return res.status(400).json({ message: error.message, data: error });
+                    }
+                    if (error instanceof UniqueConstraintError) {
+                        return res.status(400).json({ message: error.message, data: error })
+                    }
+                    const message = `L'utilisateur n'a pas pu être modifié. Réessayez dans quelques instants.`;
+                    res.status(500).json({ message, data: error });
+                });
+        }
     });
 };
