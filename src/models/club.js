@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-    return sequelize.define('Club', {
+    const Club = sequelize.define('Club', {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
@@ -50,11 +50,11 @@ module.exports = (sequelize, DataTypes) => {
         },
         coordx: {
             type: DataTypes.FLOAT,
-            allowNull: true,
+            allowNull: false,
         },
         coordy: {
             type: DataTypes.FLOAT,
-            allowNull: true,
+            allowNull: false,
         },
         created: {
             type: DataTypes.DATEONLY,
@@ -65,5 +65,11 @@ module.exports = (sequelize, DataTypes) => {
         timestamps: true,
         createdAt: 'created',
         updatedAt: false
-    })
+    });
+
+    Club.associate = (models) => {
+        Club.hasMany(models.Referee, { foreignKey: 'clubId' });
+    }
+
+    return Club;
 };

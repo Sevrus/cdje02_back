@@ -4,7 +4,7 @@ const dataReferee = [
         name: 'BAILLON STEVEN',
         title: 'Arbitre Club',
         validity: '2024-25',
-        club: 'Les Tours des Hauts de France',
+        clubId: 6,
         created: new Date
     },
     {
@@ -12,7 +12,7 @@ const dataReferee = [
         name: 'BEAUMONT PHILIPPE',
         title: 'Arbitre Open 1',
         validity: '2025-26',
-        club: 'Roi Rouge',
+        clubId: 5,
         created: new Date
     },
     {
@@ -20,7 +20,7 @@ const dataReferee = [
         name: 'BRACQ CHRISTIAN',
         title: 'Arbitre Elite 1',
         validity: '2025-26',
-        club: 'Les Tours des Hauts de France',
+        clubId: 6,
         created: new Date
     },
     {
@@ -28,7 +28,7 @@ const dataReferee = [
         name: 'BRACQ GREGORY',
         title: 'Arbitre Open 2',
         validity: '2025-26',
-        club: 'Les Tours des Hauts de France',
+        clubId: 6,
         created: new Date
     },
     {
@@ -36,7 +36,7 @@ const dataReferee = [
         name: 'COCQUELLE GILBERT',
         title: 'Arbitre Club',
         validity: '2026-27',
-        club: 'La Tour Lehaucourtoise',
+        clubId: 4,
         created: new Date
     },
     {
@@ -44,7 +44,7 @@ const dataReferee = [
         name: 'DECOTTE QUENTIN',
         title: 'Arbitre Club',
         validity: '2024-25',
-        club: 'La Fere A.D.E.L.',
+        clubId: 3,
         created: new Date
     },
     {
@@ -52,7 +52,7 @@ const dataReferee = [
         name: 'DRISSI ANIS',
         title: 'Arbitre Jeune',
         validity: '2023-24',
-        club: 'Les Tours des Hauts de France',
+        clubId: 6,
         created: new Date
     },
     {
@@ -60,7 +60,7 @@ const dataReferee = [
         name: 'FORTHOFER ROBERT',
         title: 'Arbitre Open 1',
         validity: '2026-27',
-        club: 'La Petite "A"',
+        clubId: 2,
         created: new Date
     },
     {
@@ -68,7 +68,7 @@ const dataReferee = [
         name: 'GOBEAUT CLAUDINE',
         title: 'Arbitre Club',
         validity: '2024-25',
-        club: 'Les Tours des Hauts de France',
+        clubId: 6,
         created: new Date
     },
     {
@@ -76,7 +76,7 @@ const dataReferee = [
         name: 'GOUBET ENGUERAND',
         title: 'Arbitre Jeune',
         validity: '2025-26',
-        club: 'Les Tours des Hauts de France',
+        clubId: 6,
         created: new Date
     },
     {
@@ -84,7 +84,7 @@ const dataReferee = [
         name: 'LABROCHE JEROME',
         title: 'Arbitre Club',
         validity: '2025-26',
-        club: 'Echiquier Soissonnais',
+        clubId: 7,
         created: new Date
     },
     {
@@ -92,7 +92,7 @@ const dataReferee = [
         name: 'LANDON BORIS',
         title: 'Arbitre Club',
         validity: '2026-27',
-        club: 'La Tour Lehaucourtoise',
+        clubId: 4,
         created: new Date
     },
     {
@@ -100,7 +100,7 @@ const dataReferee = [
         name: 'LUCAS BERNARD',
         title: 'Arbitre Open 2',
         validity: '2026-27',
-        club: 'Echiquier Bernotois',
+        clubId: 1,
         created: new Date
     },
     {
@@ -108,7 +108,7 @@ const dataReferee = [
         name: 'ROUX JEAN-FRANCOIS',
         title: 'Arbitre Open 2',
         validity: '2025-26',
-        club: 'La Petite "A"',
+        clubId: 2,
         created: new Date
     }
 ]
