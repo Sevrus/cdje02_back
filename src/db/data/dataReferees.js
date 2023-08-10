@@ -1,4 +1,4 @@
-const dataReferee = [
+const dataReferees = [
     {
         id: 1,
         name: 'BAILLON STEVEN',
@@ -113,4 +113,4 @@ const dataReferee = [
     }
 ]
 
-module.exports = dataReferee;
+module.exports = dataReferees;
