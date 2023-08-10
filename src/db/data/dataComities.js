@@ -1,7 +1,7 @@
 const dataComities = [
     {
         id: 1,
-        title: 'PRÉSIDENT',
+        title: 'Président',
         image: 'https://www.zupimages.net/up/23/24/do6d.png',
         alt: 'La photo du président',
         firstName: 'Bracq',
@@ -10,7 +10,7 @@ const dataComities = [
     },
     {
         id: 2,
-        title: 'SECRÉTAIRE',
+        title: 'Secrétaire',
         image: 'https://www.zupimages.net/up/23/24/1f5b.png',
         alt: 'La photo du secrétaire',
         firstName: 'Labroche',
@@ -19,7 +19,7 @@ const dataComities = [
     },
     {
         id: 3,
-        title: 'TRÉSORIER',
+        title: 'Trésorier',
         image: 'https://zupimages.net/up/23/27/f05p.png',
         alt: 'La photo du trésorier',
         firstName: 'Beaumont',
