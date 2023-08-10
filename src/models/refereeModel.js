@@ -37,6 +37,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         clubId: {
             type: DataTypes.INTEGER,
+            foreignKey: true,
             references: {
                 model: 'Clubs',
                 key: 'id'
