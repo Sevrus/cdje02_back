@@ -1,4 +1,4 @@
-const dataComity = [
+const dataComities = [
     {
         id: 1,
         title: 'Président',
@@ -28,4 +28,4 @@ const dataComity = [
     }
 ]
 
-module.exports = dataComity;
+module.exports = dataComities;
