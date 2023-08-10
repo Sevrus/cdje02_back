@@ -4,8 +4,8 @@ const dataComities = [
         title: 'Président',
         image: 'https://www.zupimages.net/up/23/24/do6d.png',
         alt: 'La photo du président',
-        firstName: 'Bracq',
-        lastName: 'Christian',
+        firstName: 'Christian',
+        lastName: 'Bracq',
         mail: 'bracq.christian.ffe@gmail.com'
     },
     {
@@ -13,8 +13,8 @@ const dataComities = [
         title: 'Secrétaire',
         image: 'https://www.zupimages.net/up/23/24/1f5b.png',
         alt: 'La photo du secrétaire',
-        firstName: 'Labroche',
-        lastName: 'Jérome',
+        firstName: 'Jérome',
+        lastName: 'Labroche',
         mail: 'jer1700@yahoo.fr'
     },
     {
@@ -22,8 +22,8 @@ const dataComities = [
         title: 'Trésorier',
         image: 'https://zupimages.net/up/23/27/f05p.png',
         alt: 'La photo du trésorier',
-        firstName: 'Beaumont',
-        lastName: 'Philippe',
+        firstName: 'Philippe',
+        lastName: 'Beaumont',
         mail: 'pvbeaumont@wanadoo.fr'
     }
 ]
