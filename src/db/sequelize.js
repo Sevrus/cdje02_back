@@ -18,10 +18,11 @@ const bcrypt = require('bcrypt');
 
 const sequelize = new Sequelize('cdje02_db', 'root', '', {
     host: 'localhost',
+    port: 3306,
     dialect: 'mariadb',
-    dialectOptions: {
-        timezone: 'Etc/GMT+2',
-    },
+    // dialectOptions: {
+    //     timezone: 'Etc/GMT+2',
+    // },
     logging: false
 });
 
