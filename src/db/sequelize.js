@@ -1,14 +1,15 @@
-const {Sequelize, DataTypes} = require('sequelize');
+const { Sequelize, DataTypes } = require('sequelize');
 const bcrypt = require('bcrypt');
 
-const UserModel = require('../models/user');
-const ClubModel = require('../models/club');
-const RefereeModel = require('../models/referee.js')
-const ComityModel = require('../models/comity.js');
+const { associateModels } = require('../models/association');
+const UserModel = require('../models/userModel.js');
+const ClubModel = require('../models/clubModel.js');
+const RefereeModel = require('../models/refereeModel.js')
+const ComityModel = require('../models/comityModel.js');
 const tournamentModel = require('../models/tournamentModel.js');
 const aisneChampionModel = require('../models/aisneChampionModel.js');
-const RegulationModel = require('../models/regulation');
-const NewsModel = require('../models/news');
+const RegulationModel = require('../models/regulationModel.js');
+const NewsModel = require('../models/newsModel.js');
 
 const clubsData = require('./data/dataClubs');
 const refereesData = require('./data/dataReferees')
@@ -17,7 +18,6 @@ const tournamentsData = require('./data/dataTournaments');
 const aisneChampionsData = require('./data/dataAisneChampions');
 const regulationsData = require('./data/dataRegulations');
 const newsData = require('./data/dataNews');
-
 
 const sequelize = new Sequelize('cdje02_db', 'root', '', {
     host: 'localhost',
@@ -36,6 +36,8 @@ const Regulation = RegulationModel(sequelize, DataTypes);
 const AisneChampion = aisneChampionModel(sequelize, DataTypes);
 const News = NewsModel(sequelize, DataTypes);
 const Referee = RefereeModel(sequelize, DataTypes);
+
+associateModels({ Referee, Club });
 
 const initComities = async () => {
     for (const comityData of comitiesData) {
@@ -87,7 +89,10 @@ const initClubs = async () => {
 };
 
 const initDb = async () => {
-    await sequelize.sync({force: true});
+    await sequelize.sync({ force: true });
+
+    Club.associate(sequelize.models);
+    Referee.associate(sequelize.models);
 
     await initTournaments();
     await initClubs();
@@ -98,7 +103,7 @@ const initDb = async () => {
     await initReferees();
 
     const hashedPassword = await bcrypt.hash('Admin!001', 10);
-    const user = await User.create({email: 'admin@admin.fr', password: hashedPassword});
+    const user = await User.create({ email: 'admin@admin.fr', password: hashedPassword });
     console.log(user.toJSON());
 
     console.log('La base de donnée a bien été initialisée !');

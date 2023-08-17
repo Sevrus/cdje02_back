@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-    return sequelize.define('Referees', {
+    const Referee = sequelize.define('Referees', {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
@@ -35,13 +35,12 @@ module.exports = (sequelize, DataTypes) => {
                 len: [4, 8]
             }
         },
-        club: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                notNull: { msg: `Le nom du club est requis.` },
-                notEmpty: { msg: `Le nom du club ne peut pas être vide.` },
-                len: [3, 50]
+        clubId: {
+            type: DataTypes.INTEGER,
+            foreignKey: true,
+            references: {
+                model: 'Clubs',
+                key: 'id'
             }
         }
     },
@@ -50,4 +49,10 @@ module.exports = (sequelize, DataTypes) => {
             createdAt: 'created',
             updatedAt: false
         });
-}
+
+    Referee.associate = (models) => {
+        Referee.belongsTo(models.Club, { foreignKey: 'clubId' });
+    };
+
+    return Referee;
+};
