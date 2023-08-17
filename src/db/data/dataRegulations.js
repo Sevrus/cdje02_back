@@ -1,4 +1,4 @@
-const dataRegulation = [
+const dataRegulations = [
     {
         id: 1,
         title: 'Championnat de l\'Aisne lent (-2200)',
@@ -37,4 +37,4 @@ const dataRegulation = [
     }
 ]
 
-module.exports = dataRegulation;
+module.exports = dataRegulations;

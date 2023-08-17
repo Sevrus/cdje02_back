@@ -1,29 +1,30 @@
 const { Sequelize, DataTypes } = require('sequelize');
-const UserModel = require('../models/userModel');
-const RefereeModel = require('../models/refereeModel.js')
-const referees = require('./data/dataReferee')
-const ComityModel = require('../models/comityModel.js');
-const comities = require('./data/dataComity');
-const tournamentModel = require('../models/tournamentModel.js');
-const tournaments = require('./data/dataTournaments');
-const aisneChampionModel = require('../models/aisneChampionModel.js');
-const aisneChampions = require('./data/dataAisneChampions');
-const ClubModel = require('../models/clubModel');
-const clubs = require('./data/dataClubs');
-const RegulationModel = require('../models/regulationModel');
-const regulations = require('./data/dataRegulation');
-const NewsModel = require('../models/newsModel');
-const news = require('./data/dataNews');
 const bcrypt = require('bcrypt');
+
 const { associateModels } = require('../models/association');
+const UserModel = require('../models/userModel.js');
+const ClubModel = require('../models/clubModel.js');
+const RefereeModel = require('../models/refereeModel.js')
+const ComityModel = require('../models/comityModel.js');
+const tournamentModel = require('../models/tournamentModel.js');
+const aisneChampionModel = require('../models/aisneChampionModel.js');
+const RegulationModel = require('../models/regulationModel.js');
+const NewsModel = require('../models/newsModel.js');
+
+const clubsData = require('./data/dataClubs');
+const refereesData = require('./data/dataReferees')
+const comitiesData = require('./data/dataComities');
+const tournamentsData = require('./data/dataTournaments');
+const aisneChampionsData = require('./data/dataAisneChampions');
+const regulationsData = require('./data/dataRegulations');
+const newsData = require('./data/dataNews');
 
 const sequelize = new Sequelize('cdje02_db', 'root', '', {
     host: 'localhost',
-    port: 3306,
     dialect: 'mariadb',
-    // dialectOptions: {
-    //     timezone: 'Etc/GMT+2',
-    // },
+    dialectOptions: {
+        timezone: 'Etc/GMT+2',
+    },
     logging: false
 });
 
@@ -38,83 +39,74 @@ const Referee = RefereeModel(sequelize, DataTypes);
 
 associateModels({ Referee, Club });
 
-const initDb = () => {
-    return sequelize.sync({ force: true }).then(_ => {
+const initComities = async () => {
+    for (const comityData of comitiesData) {
+        const comity = await Comity.create(comityData);
+        console.log(comity.toJSON());
+    }
+};
 
-        Club.associate(sequelize.models);
-        Referee.associate(sequelize.models);
+const initReferees = async () => {
+    for (const refereeData of refereesData) {
+        const referee = await Referee.create(refereeData);
+        console.log(referee.toJSON());
+    }
+};
 
-        comities.map(comity => {
-            Comity.create({
-                title: comity.title,
-                image: comity.image,
-                alt: comity.alt,
-                firstName: comity.firstName,
-                lastName: comity.lastName,
-                mail: comity.mail
-            }).then(comity => console.log(comity.toJSON()));
-        });
+const initNews = async () => {
+    for (const newData of newsData) {
+        const news = await News.create(newData);
+        console.log(news.toJSON());
+    }
+};
 
-        news.map(news => {
-            News.create({
-                title: news.title,
-                author: news.author,
-                description: news.description,
-                image: news.image,
-                created: news.created
-            }).then(news => console.log(news.toJSON()));
-        });
+const initTournaments = async () => {
+    for (const tournamentData of tournamentsData) {
+        const tournament = await Tournament.create(tournamentData);
+        console.log(tournament.toJSON());
+    }
+};
 
-        tournaments.map(tournament => {
-            Tournament.create({
-                title: tournament.title,
-                link: tournament.link
-            }).then(tournament => console.log(tournament.toJSON()));
-        });
+const initRegulations = async () => {
+    for (const regulationData of regulationsData) {
+        const regulation = await Regulation.create(regulationData);
+        console.log(regulation.toJSON());
+    }
+};
 
-        regulations.map(regulation => {
-            Regulation.create({
-                title: regulation.title,
-                link: regulation.link
-            }).then(regulation => console.log(regulation.toJSON()));
-        });
+const initAisneChampions = async () => {
+    for (const aisneChampionData of aisneChampionsData) {
+        const aisneChampion = await AisneChampion.create(aisneChampionData);
+        console.log(aisneChampion.toJSON());
+    }
+};
 
-        aisneChampions.map(aisneChampion => {
-            AisneChampion.create({
-                name: aisneChampion.name,
-                years: aisneChampion.years
-            }).then(aisneChampion => console.log(aisneChampion.toJSON()));
-        });
+const initClubs = async () => {
+    for (const clubData of clubsData) {
+        const club = await Club.create(clubData);
+        console.log(club.toJSON());
+    }
+};
 
-        clubs.map(club => {
-            Club.create({
-                name: club.name,
-                city: club.city,
-                president: club.president,
-                tel: club.tel,
-                site: club.site,
-                members: club.members,
-                coordx: club.coordx,
-                coordy: club.coordy
-            }).then(club => console.log(club.toJSON()));
-        });
+const initDb = async () => {
+    await sequelize.sync({ force: true });
 
-        referees.map(referee => {
-            Referee.create({
-                name: referee.name,
-                title: referee.title,
-                validity: referee.validity,
-                clubId: referee.clubId,
-            }).then(referee => console.log(referee.toJSON()));
-        });
+    Club.associate(sequelize.models);
+    Referee.associate(sequelize.models);
 
-        bcrypt.hash('Admin!001', 10)
-            .then(hash => User.create({ email: 'admin@admin.fr', password: hash }))
-            .then(user => console.log(user.toJSON()));
+    await initTournaments();
+    await initClubs();
+    await initComities();
+    await initAisneChampions();
+    await initRegulations();
+    await initNews();
+    await initReferees();
 
-        console.log('La base de donnée a bien été initialisée !');
-        return sequelize.sync();
-    });
+    const hashedPassword = await bcrypt.hash('Admin!001', 10);
+    const user = await User.create({ email: 'admin@admin.fr', password: hashedPassword });
+    console.log(user.toJSON());
+
+    console.log('La base de donnée a bien été initialisée !');
 };
 
 module.exports = {
