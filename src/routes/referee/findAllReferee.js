@@ -1,15 +1,17 @@
-const {Referee, Club} = require("../../db/sequelize");
-
+const { Referee, Club } = require('../../db/sequelize');
 
 module.exports = (app) => {
     app.get('/api/referees', (req, res) => {
-        console.log("Route /api/referees called");
         Referee.findAll({
             order: ['validity'],
-            include: { model: Club }
+            include: {
+                model: Club,
+                as: 'Club',
+                attributes: ['name'],
+                required: true
+            }
         })
             .then(referees => {
-                console.log("Referees found:", referees);
                 const message = 'La liste des arbitres a bien été récupérée.';
                 res.json({ message, data: referees });
             })

@@ -1,4 +1,4 @@
-const {Sequelize, DataTypes} = require('sequelize');
+const { Sequelize, DataTypes } = require('sequelize');
 const UserModel = require('../models/userModel');
 const RefereeModel = require('../models/refereeModel.js')
 const referees = require('./data/dataReferee')
@@ -15,6 +15,7 @@ const regulations = require('./data/dataRegulation');
 const NewsModel = require('../models/newsModel');
 const news = require('./data/dataNews');
 const bcrypt = require('bcrypt');
+const { associateModels } = require('../models/association');
 
 const sequelize = new Sequelize('cdje02_db', 'root', '', {
     host: 'localhost',
@@ -35,8 +36,13 @@ const AisneChampion = aisneChampionModel(sequelize, DataTypes);
 const News = NewsModel(sequelize, DataTypes);
 const Referee = RefereeModel(sequelize, DataTypes);
 
+associateModels({ Referee, Club });
+
 const initDb = () => {
-    return sequelize.sync({force: true}).then(_ => {
+    return sequelize.sync({ force: true }).then(_ => {
+
+        Club.associate(sequelize.models);
+        Referee.associate(sequelize.models);
 
         comities.map(comity => {
             Comity.create({
@@ -103,10 +109,11 @@ const initDb = () => {
         });
 
         bcrypt.hash('Admin!001', 10)
-            .then(hash => User.create({email: 'admin@admin.fr', password: hash}))
+            .then(hash => User.create({ email: 'admin@admin.fr', password: hash }))
             .then(user => console.log(user.toJSON()));
 
         console.log('La base de donnée a bien été initialisée !');
+        return sequelize.sync();
     });
 };
 
